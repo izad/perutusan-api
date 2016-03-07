@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
     doc.css('.megamenu li').each do |node|
       a = node.at_css('a')
 
-      next if a.content == 'Berita'
+      next if %w(Berita Video).include? a.content
       next unless node[:id].present? || a[:href].include?('berita/')
       break if a.content == 'Lain-lain'
 
@@ -20,13 +20,15 @@ class CategoriesController < ApplicationController
       }
     end
 
+    categories[0], categories[1] = categories[1], categories[0]
+
     render json: categories
   end
 
   def show
     #render plain: params[:slug]
 
-    if params[:second].present?      
+    if params[:second].present?
       path = "#{params[:first]}/#{params[:second]}"
     else
       path = params[:first]
@@ -42,7 +44,7 @@ class CategoriesController < ApplicationController
 
       headline = {
         id: h2.at_css('a')[:href].split('/').last.split('-').last.gsub('.', '_'),
-        title: h2.content,        
+        title: h2.content,
         excerpt: node.css('p').last.content
       }
 

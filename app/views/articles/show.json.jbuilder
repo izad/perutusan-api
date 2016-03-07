@@ -6,7 +6,7 @@ else
   json.subtitle nil
 end
 
-if @doc.at_css('.author').present?  
+if @doc.at_css('.author').present?
   json.author @doc.at_css('.author').content.downcase.titleize
 else
   json.author nil
@@ -20,7 +20,7 @@ else
   json.lead nil
 end
 
-json.body strip_tags(@doc.at_css('#articleBody').to_s)  
+json.body strip_tags(@doc.at_css('#articleBody').to_s)
 
 if @doc.at_css('.image.top img').present?
   json.photo "http://www.utusan.com.my#{@doc.at_css('.image.top img')[:src]}"
