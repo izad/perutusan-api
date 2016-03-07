@@ -3,6 +3,7 @@ require 'open-uri'
 class CategoriesController < ApplicationController
 
   def index
+=begin
     categories = []
 
     doc = Nokogiri::HTML(open(base_url))
@@ -23,6 +24,7 @@ class CategoriesController < ApplicationController
     categories[0], categories[1] = categories[1], categories[0]
 
     render json: categories
+=end    
   end
 
   def show
