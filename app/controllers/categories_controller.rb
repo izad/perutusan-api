@@ -35,40 +35,7 @@ class CategoriesController < ApplicationController
       headlines << headline
     end
 
-    render json: headlines
-=begin
-    if params[:second].present?
-      path = "#{params[:first]}/#{params[:second]}"
-    else
-      path = params[:first]
-    end
-
-    doc = Nokogiri::HTML(open("#{base_url}/#{path}"))
-
-    headlines = []
-
-    doc.css('#itemPgContainer li').each do |node|
-      h2 = node.at_css('h2')
-      img = node.at_css('img')
-
-      headline = {
-        id: h2.at_css('a')[:href].split('/').last.split('-').last.gsub('.', '_'),
-        title: h2.content,
-        excerpt: node.css('p').last.content
-      }
-
-      if img.present?
-        headline[:photo] = "#{base_url}#{img[:src].gsub('box_100', 'landscape_650')}"
-      else
-        headline[:photo] = nil
-      end
-
-      headlines << headline
-    end
-
-    render json: headlines
-=end
-
+    render json: headlines.slice(0, 50)
   end
 
   def video
