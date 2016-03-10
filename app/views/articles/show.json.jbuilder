@@ -27,3 +27,9 @@ if @doc.at_css('.image.top img').present?
 else
   json.photo nil
 end
+
+if @doc.at_css('.image.top p').present?
+  json.caption @doc.at_css('.image.top p').content
+else
+  json.caption nil
+end
