@@ -20,7 +20,7 @@ else
   json.lead nil
 end
 
-json.body strip_tags(@doc.at_css('#articleBody').to_s).gsub("\n          ", "")
+json.body strip_tags(@doc.at_css('#articleBody').to_s).strip
 
 if @doc.at_css('.image.top img').present?
   json.photo "http://www.utusan.com.my#{@doc.at_css('.image.top img')[:src]}"
