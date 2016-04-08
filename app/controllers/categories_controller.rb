@@ -12,8 +12,9 @@ class CategoriesController < ApplicationController
       path = params[:first]
     end
 
-    doc = Nokogiri::HTML(open("#{base_mobile_url}/#{path}"))
+    @doc = Nokogiri::HTML(open("#{base_mobile_url}/#{path}"))
 
+=begin
     headlines = []
 
     doc.css('.linklist li').each do |node|
@@ -36,6 +37,11 @@ class CategoriesController < ApplicationController
     end
 
     render json: headlines.slice(0, 50)
+=end
+  end
+
+  def video
+    render json: { video: true }
   end
 
   private
