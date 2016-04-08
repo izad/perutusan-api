@@ -38,10 +38,6 @@ class CategoriesController < ApplicationController
     render json: headlines.slice(0, 50)
   end
 
-  def video
-    render json: { video: true }
-  end
-
   private
 
     def base_url
