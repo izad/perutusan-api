@@ -29,8 +29,7 @@ json.article do
   end
 
   body = @doc.at_css('#articleBody')
-  body.search('img').remove
-  body.search('.caption').remove
+  body.search('div').remove
   json.body ReverseMarkdown.convert(body.to_s.strip).gsub("\n\n \n\n", "\n\n")
 
   if @doc.at_css('.image.top img').present?
