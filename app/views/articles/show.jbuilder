@@ -5,6 +5,7 @@ end
 
 json.article do
   json.id params[:id]
+  json.link @link
   json.title @doc.at_css('.title h1').content
 
   if @doc.at_css('.title .subhead').present?

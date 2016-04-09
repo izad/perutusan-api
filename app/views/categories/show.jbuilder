@@ -10,7 +10,14 @@ json.articles do
     h2 = node.at_css('h2')
     img = node.at_css('img')
 
-    json.id h2.at_css('a')[:href].split('/').last.split('-').last.gsub('.', '_')
+
+    components = h2.at_css('a')[:href].split('/')
+    category = components.slice(1, components.length - 2).join('_')
+    id = h2.at_css('a')[:href].split('/').last.split('-').last.gsub('.', '-')
+
+    json.id "#{category}_#{id}"
+    json.link "#{base_url}#{h2.at_css('a')[:href]}"
+
     json.title h2.content
     json.timestamp node.at_css('span').content
 
