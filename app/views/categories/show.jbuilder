@@ -9,8 +9,6 @@ json.articles do
   json.array! @doc.css('.linklist li').slice(0, length) do |node|
     h2 = node.at_css('h2')
     img = node.at_css('img')
-
-
     components = h2.at_css('a')[:href].split('/')
     category = components.slice(1, components.length - 2).join('_')
     id = h2.at_css('a')[:href].split('/').last.split('-').last.gsub('.', '-')
