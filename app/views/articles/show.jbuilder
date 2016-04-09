@@ -30,7 +30,8 @@ json.article do
 
   body = @doc.at_css('#articleBody')
   body.search('img').remove
-  json.body ReverseMarkdown.convert(body.to_s.strip).gsub("\n\n \n\n", "\n\n").gsub('&nbsp;', '')
+  body.search('.caption').remove
+  json.body ReverseMarkdown.convert(body.to_s.strip).gsub("\n\n \n\n", "\n\n")
 
   if @doc.at_css('.image.top img').present?
     json.photo "http://www.utusan.com.my#{@doc.at_css('.image.top img')[:src]}"
