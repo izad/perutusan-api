@@ -30,7 +30,7 @@ json.article do
 
   body = @doc.at_css('#articleBody')
   body.search('div').remove
-  json.body ReverseMarkdown.convert(body.to_s.strip).gsub("\n\n \n\n", "\n\n").gsub("&nbsp;\n\n", '').gsub('**', '')
+  json.body ReverseMarkdown.convert(body.to_s.strip).gsub("\n\n \n\n", "\n\n").gsub("&nbsp;\n\n", '').gsub('**', '').gsub('&nbsp;', ' ')
 
   if @doc.at_css('.image.top img').present?
     json.photo "#{base_url}#{@doc.at_css('.image.top img')[:src]}"
