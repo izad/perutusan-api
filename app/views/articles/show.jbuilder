@@ -6,7 +6,7 @@ end
 json.article do
   json.id params[:id]
   json.link @link
-  json.title @doc.at_css('.title h1').content.gsub("\n", '')
+  json.title @doc.at_css('.title h1').content.gsub(/[^0-9a-z ]/i, '')
 
   if @doc.at_css('.title .subhead').present?
     json.subtitle @doc.at_css('.title .subhead').content
