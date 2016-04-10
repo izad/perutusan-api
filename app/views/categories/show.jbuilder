@@ -16,7 +16,7 @@ json.articles do
     json.id "#{category}_#{id}"
     json.link "#{base_url}#{h2.at_css('a')[:href]}"
 
-    json.title h2.content
+    json.title h2.content.gsub("\n", '')
     json.timestamp node.at_css('span').content
 
     if img.present?
